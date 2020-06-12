@@ -1,9 +1,9 @@
 import { format } from 'date-fns'
 
 export default {
-  name: 'post',
+  name: 'coat',
   type: 'document',
-  title: 'Blog Post',
+  title: 'Golden Apple Coat',
   fields: [
     {
       name: 'title',
@@ -33,22 +33,29 @@ export default {
       title: 'Main image'
     },
     {
-      name: 'excerpt',
-      type: 'excerptPortableText',
-      title: 'Excerpt',
-      description:
-        'This ends up on summary pages, on Google, when people share your post in social media.'
+      name: 'limited',
+      type: 'boolean',
+      title: 'Limited?',
+      description: 'Is the coat limited or not.'
     },
-    // {
-    //   name: 'authors',
-    //   title: 'Authors',
-    //   type: 'array',
-    //   of: [
-    //     {
-    //       type: 'authorReference'
-    //     }
-    //   ]
-    // },
+    {
+      name: 'useNum',
+      type: 'number',
+      title: 'Use Number',
+      description: 'Number of uses for limited coats.'
+    },
+    {
+      name: 'bgName',
+      type: 'string',
+      title: 'Background Name',
+      description: 'background name'
+    },
+    {
+      name: 'link',
+      type: 'string',
+      title: 'link',
+      description: 'public link'
+    },
     {
       name: 'categories',
       type: 'array',
