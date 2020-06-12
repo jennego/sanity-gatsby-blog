@@ -30,11 +30,11 @@ export const query = graphql`
   }
 `;
 
-const BlogPostTemplate = props => {
+const BlogPostTemplate = (props) => {
   const { data, errors } = props;
   const post = data && data.post;
   return (
-    <Layout>
+    <div>
       {errors && <SEO title="GraphQL Error" />}
       {post && (
         <SEO
@@ -51,7 +51,7 @@ const BlogPostTemplate = props => {
       )}
 
       {post && <BlogPost {...post} />}
-    </Layout>
+    </div>
   );
 };
 

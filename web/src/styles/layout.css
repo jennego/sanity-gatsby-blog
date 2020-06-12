@@ -1,4 +1,11 @@
-@import './custom-properties.css';
+@import "./custom-properties.css";
+
+.ReactModal__Overlay--after-open {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  right: 30px;
+  left: 30px;
+}
 
 html {
   font-family: var(--font-family-sans);
