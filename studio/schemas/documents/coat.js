@@ -15,7 +15,9 @@ export default {
       name: 'slug',
       type: 'slug',
       title: 'Slug',
-      description: 'Some frontends will require a slug to be set to be able to show the post',
+      description:
+        'Some frontends like ours will require a slug to be set to be able to show the post',
+      validation: Rule => Rule.required(),
       options: {
         source: 'title',
         maxLength: 96
@@ -25,7 +27,8 @@ export default {
       name: 'publishedAt',
       type: 'datetime',
       title: 'Published at',
-      description: 'This can be used to schedule post for publishing'
+      description: 'This can be used to schedule post for publishing',
+      validation: Rule => Rule.required()
     },
     {
       name: 'mainImage',
@@ -37,6 +40,12 @@ export default {
       type: 'boolean',
       title: 'Limited?',
       description: 'Is the coat limited or not.'
+    },
+    {
+      name: 'preCreation',
+      type: 'boolean',
+      title: 'Pre-Creation Space',
+      description: 'Is the coat pre-creation space or not.'
     },
     {
       name: 'useNum',
@@ -75,6 +84,10 @@ export default {
       title: 'Body'
     }
   ],
+  initialValue: {
+    limited: false,
+    preCreation: false
+  },
   orderings: [
     {
       name: 'publishingDateAsc',

@@ -1,10 +1,5 @@
 import React from "react";
 import { graphql } from "gatsby";
-import {
-  mapEdgesToNodes,
-  filterOutDocsWithoutSlugs,
-  filterOutDocsPublishedInTheFuture,
-} from "../lib/helpers";
 import BlogPostPreviewList from "../components/blog-post-preview-list";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
@@ -52,6 +47,7 @@ export const query = graphql`
         node {
           id
           title
+          link
           mainImage {
             asset {
               url
@@ -114,12 +110,12 @@ const IndexPage = (props) => {
           ))}
         </Row>
         {/* {postNodes && (
-          <BlogPostPreviewList
-            title="Latest blog posts"
-            nodes={postNodes}
-            browseMoreHref="/archive/"
-          />
-        )} */}
+              <BlogPostPreviewList
+              title="Latest blog posts"
+              nodes={postNodes}
+              browseMoreHref="/archive/"
+              />
+            )} */}
       </Container>
     </Layout>
   );

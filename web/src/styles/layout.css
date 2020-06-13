@@ -1,5 +1,12 @@
 @import "./custom-properties.css";
 
+.coat-link a,
+.coat-link a:visited {
+  position: relative;
+  z-index: 3;
+  color: white;
+}
+
 .ReactModal__Overlay--after-open {
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;

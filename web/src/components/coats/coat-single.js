@@ -8,14 +8,22 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 function CoatSingle(props) {
-  const { _rawBody, categories, title, mainImage, url, link } = props;
+  const {
+    _rawBody,
+    categories,
+    title,
+    mainImage,
+    link,
+    useNum,
+    bgName,
+    limited,
+  } = props;
   return (
     <Container>
       <Row>
         <Col md={8}>
           {mainImage !== null ? (
-            <a href={url}>
-              {" "}
+            <a href={link}>
               <img src={props.mainImage.asset.url} class="img-fluid" />{" "}
             </a>
           ) : (
@@ -23,7 +31,8 @@ function CoatSingle(props) {
           )}
         </Col>
         <Col md={4}>
-          <h1>{link}</h1>
+          <h1> {title} </h1>
+          <p> {limited === true ? "Limited" : "Unlimited"} </p>
         </Col>
       </Row>
     </Container>

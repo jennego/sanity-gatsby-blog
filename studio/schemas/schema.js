@@ -10,6 +10,7 @@ import category from './documents/category'
 import post from './documents/post'
 import coat from './documents/coat'
 import siteSettings from './documents/siteSettings'
+import coatIntro from './documents/coatIntro'
 
 // Object types
 import bodyPortableText from './objects/bodyPortableText'
@@ -33,6 +34,7 @@ export default createSchema({
     category,
     author,
     mainImage,
+    coatIntro,
     authorReference,
     bodyPortableText,
     bioPortableText,
