@@ -1,17 +1,12 @@
 import S from '@sanity/desk-tool/structure-builder'
 import MdSettings from 'react-icons/lib/md/settings'
-import {
-  MdPerson,
-  MdDescription,
-  MdLocalOffer
-} from 'react-icons/lib/md'
+import { MdPerson, MdDescription, MdLocalOffer } from 'react-icons/lib/md'
 import IframePreview from '../previews/IframePreview'
 
 // Web preview configuration
 const remoteURL = 'https://sanity-gatsby-blog-web-m99uh23b.netlify.app'
 const localURL = 'http://localhost:8000'
-const previewURL =
-  window.location.hostname === 'localhost' ? localURL : remoteURL
+const previewURL = window.location.hostname === 'localhost' ? localURL : remoteURL
 
 export const getDefaultDocumentNode = props => {
   /**
@@ -58,6 +53,15 @@ export default () =>
         ),
       S.divider(),
       S.listItem()
+        .title('Coat Intro Single')
+        .child(
+          S.editor()
+            .id('coatIntroAbout')
+            .schemaType('coatIntro')
+            .documentId('coatIntroSingle')
+        ),
+      S.divider(),
+      S.listItem()
         .title('Blog posts')
         .icon(MdDescription)
         .schemaType('post')
@@ -77,8 +81,6 @@ export default () =>
       // defined the structure above.
       ...S.documentTypeListItems().filter(
         listItem =>
-          !['category', 'author', 'post', 'siteSettings'].includes(
-            listItem.getId()
-          )
+          !['category', 'author', 'post', 'siteSettings', 'coatIntro'].includes(listItem.getId())
       )
     ])

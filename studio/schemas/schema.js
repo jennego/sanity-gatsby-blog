@@ -29,12 +29,12 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     siteSettings,
+    coatIntro,
     post,
     coat,
     category,
     author,
     mainImage,
-    coatIntro,
     authorReference,
     bodyPortableText,
     bioPortableText,

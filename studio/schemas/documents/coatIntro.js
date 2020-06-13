@@ -1,6 +1,6 @@
 export default {
-  title: 'About Me',
-  name: 'about',
+  title: 'Coat Intro',
+  name: 'coatIntro',
   type: 'document',
   __experimental_actions: ['update', /* 'create', 'delete', */ 'publish'],
   fields: [
@@ -10,9 +10,9 @@ export default {
       type: 'string'
     },
     {
-      title: 'body',
       name: 'body',
-      type: 'string'
+      type: 'bodyPortableText',
+      title: 'Body'
     }
   ]
 }
