@@ -1,8 +1,4 @@
-# Blog with Gatsby
-
-_Fully customizable blog template with a React.js front-end._
-
-Deployed from [sanity.io/create](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-gatsby-blog).
+This is actually not a blog but I'm too scared to change the repo name right now lol.
 
 To do
 
@@ -13,6 +9,16 @@ To do
 - Make pet page
 - Make category pages
 - Filter by category
+
+Stretch
+
+- search with autocomplete
+
+# Blog with Gatsby
+
+_Fully customizable blog template with a React.js front-end._
+
+Deployed from [sanity.io/create](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-gatsby-blog).
 
 ## What you have
 
