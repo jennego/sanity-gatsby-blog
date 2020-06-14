@@ -19,9 +19,12 @@ function CoatSingle(props) {
     limited,
   } = props;
   return (
-    <Container>
+    <Container fluid>
       <Row>
-        <Col md={8}>
+        <Col xs={1} sm={1}>
+          LEFT
+        </Col>
+        <Col xs={10} md={6}>
           {mainImage !== null ? (
             <a href={link}>
               <img src={props.mainImage.asset.url} class="img-fluid" />{" "}
@@ -30,9 +33,12 @@ function CoatSingle(props) {
             ""
           )}
         </Col>
-        <Col md={4}>
+        <Col sm={12} md={4} xs={{ order: 4 }}>
           <h1> {title} </h1>
           <p> {limited === true ? "Limited" : "Unlimited"} </p>
+        </Col>
+        <Col xs={1} xs={{ order: 3 }} md={{ order: 4 }}>
+          RIGHT
         </Col>
       </Row>
     </Container>

@@ -60,6 +60,14 @@ export default () =>
             .schemaType('coatIntro')
             .documentId('coatIntroSingle')
         ),
+      S.listItem()
+        .title('About Page')
+        .child(
+          S.editor()
+            .id('aboutPage')
+            .schemaType('about')
+            .documentId('about')
+        ),
       S.divider(),
       S.listItem()
         .title('Blog posts')

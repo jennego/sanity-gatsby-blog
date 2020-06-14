@@ -75,7 +75,7 @@ function SEO({ description, lang, meta, keywords, title, image }) {
                   : []
               )
               .concat(meta)}
-          />
+          ></Helmet>
         );
       }}
     />

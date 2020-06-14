@@ -1,7 +1,7 @@
 export default {
-  name: 'authorReference',
+  name: 'petReference',
   type: 'object',
-  title: 'Author reference',
+  title: 'Pet Reference',
   fields: [
     {
       name: 'pet',

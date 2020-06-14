@@ -4,6 +4,16 @@ _Fully customizable blog template with a React.js front-end._
 
 Deployed from [sanity.io/create](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-gatsby-blog).
 
+To do
+
+- Style single pages
+- Design grid page
+- Page animation
+- Style Nav
+- Make pet page
+- Make category pages
+- Filter by category
+
 ## What you have
 
 - A blazing fast blog with [Gatsby.js](https://gatsbyjs.org)
