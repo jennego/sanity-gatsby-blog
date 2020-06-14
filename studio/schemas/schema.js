@@ -11,6 +11,8 @@ import post from './documents/post'
 import coat from './documents/coat'
 import siteSettings from './documents/siteSettings'
 import coatIntro from './documents/coatIntro'
+import aboutPage from './documents/aboutPage'
+import pet from './documents/pet'
 
 // Object types
 import bodyPortableText from './objects/bodyPortableText'
@@ -29,10 +31,12 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     siteSettings,
+    aboutPage,
     coatIntro,
     post,
     coat,
     category,
+    pet,
     author,
     mainImage,
     authorReference,

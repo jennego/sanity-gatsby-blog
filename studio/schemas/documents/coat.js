@@ -60,10 +60,28 @@ export default {
       description: 'background name'
     },
     {
+      name: 'Pet',
+      type: 'array',
+      title: 'Pet',
+      of: [
+        {
+          type: 'reference',
+          to: {
+            type: 'petReference'
+          }
+        }
+      ]
+    },
+    {
       name: 'link',
       type: 'string',
-      title: 'link',
+      title: 'Public Link',
       description: 'public link'
+    },
+    {
+      name: 'privateLink',
+      type: 'string',
+      title: 'Private Link'
     },
     {
       name: 'categories',
