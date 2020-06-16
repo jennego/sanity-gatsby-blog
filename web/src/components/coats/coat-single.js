@@ -21,15 +21,22 @@ function CoatSingle(props) {
   } = props;
   return (
     <Container fluid>
-      <Row>
-        <Col xs={1} sm={1}>
+      <div className="row d-flex justify-content-center">
+        <div
+          className="col-xs-1 d-flex align-items-center"
+          d-flex
+          align-items-center
+        >
           {props.nav.prev === null ? (
-            ""
+            <i className="fas fa-chevron-left fa-7x text-light"></i>
           ) : (
-            <Link to={`/coat/${props.nav.prev}`}> Previous</Link>
+            <Link to={`/coat/${props.nav.prev}`}>
+              {" "}
+              <i class="fas fa-chevron-left fa-7x"></i>
+            </Link>
           )}
-        </Col>
-        <Col xs={10} md={6}>
+        </div>
+        <Col xs={8} md={6}>
           {mainImage !== null ? (
             <a href={link}>
               <img src={props.mainImage.asset.url} class="img-fluid" />{" "}
@@ -38,18 +45,25 @@ function CoatSingle(props) {
             ""
           )}
         </Col>
-        <Col sm={12} md={4} xs={{ order: 4 }}>
+        <Col xs={12} sm={12} md={4} xs={{ order: 4 }}>
           <h1> {title} </h1>
           <p> {limited === true ? "Limited" : "Unlimited"} </p>
         </Col>
-        <Col xs={1} xs={{ order: 3 }} md={{ order: 4 }}>
+        <div
+          className="col-xs-1 d-flex align-items-center order-xs-3 order-md-4"
+          d-flex
+          align-items-center
+        >
           {props.nav.next === null ? (
-            ""
+            <i className="fas fa-chevron-right fa-7x text-light"></i>
           ) : (
-            <Link to={`/coat/${props.nav.next}`}> Next</Link>
+            <Link to={`/coat/${props.nav.next}`}>
+              {" "}
+              <i class="fas fa-chevron-right fa-7x"></i>
+            </Link>
           )}
-        </Col>
-      </Row>
+        </div>
+      </div>
     </Container>
   );
 }
