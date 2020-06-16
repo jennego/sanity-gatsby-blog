@@ -31,7 +31,7 @@ export const query = graphql`
 `;
 
 const BlogPostTemplate = (props) => {
-  const { data, errors } = props;
+  const { data, errors, pageContext } = props;
   const post = data && data.post;
   return (
     <div>
@@ -49,6 +49,8 @@ const BlogPostTemplate = (props) => {
           <GraphQLErrorList errors={errors} />
         </Container>
       )}
+
+      {console.log(pageContext)}
 
       {post && <BlogPost {...post} />}
     </div>

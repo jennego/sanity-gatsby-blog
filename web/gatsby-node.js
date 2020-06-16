@@ -41,7 +41,14 @@ async function createBlogPostPages(graphql, actions) {
       createPage({
         path,
         component: require.resolve("./src/templates/blog-post.js"),
-        context: { id },
+        context: {
+          id,
+          next:
+            index === postEdges.length - 1
+              ? null
+              : postEdges[index + 1].node.slug.current,
+          prev: index === 0 ? null : postEdges[index - 1].node.slug.current,
+        },
       });
     });
 }
@@ -68,9 +75,9 @@ async function createCoatPages(graphql, actions) {
 
   if (result.errors) throw result.errors;
 
-  const postEdges = (result.data.allSanityCoat || {}).edges || [];
+  const coatEdges = (result.data.allSanityCoat || {}).edges || [];
 
-  postEdges
+  coatEdges
     .filter((edge) => !isFuture(edge.node.publishedAt))
     .forEach((edge, index) => {
       const { id, slug = {}, publishedAt } = edge.node;
@@ -80,7 +87,14 @@ async function createCoatPages(graphql, actions) {
       createPage({
         path,
         component: require.resolve("./src/templates/coat.js"),
-        context: { id },
+        context: {
+          id,
+          next:
+            index === postEdges.length - 1
+              ? null
+              : coatEdges[index + 1].node.slug.current,
+          prev: index === 0 ? null : coatEdges[index - 1].node.slug.current,
+        },
       });
     });
 }

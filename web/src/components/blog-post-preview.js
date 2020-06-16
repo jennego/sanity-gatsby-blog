@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { Link } from "gatsby-plugin-modal-routing";
+import { Link } from "gatsby";
 
 import React from "react";
 import { buildImageObj, cn, getBlogUrl } from "../lib/helpers";
@@ -12,7 +12,6 @@ import { responsiveTitle3 } from "./typography.module.css";
 function BlogPostPreview(props) {
   return (
     <Link
-      asModal
       className={props.isInList ? styles.inList : styles.inGrid}
       to={getBlogUrl(props.publishedAt, props.slug.current)}
     >
