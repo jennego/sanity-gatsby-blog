@@ -34,7 +34,7 @@ export const query = graphql`
 `;
 
 const CoatTemplate = (props) => {
-  const { data, errors } = props;
+  const { data, errors, pageContext } = props;
   const coat = data && data.coat;
   return (
     <Layout>
@@ -46,7 +46,7 @@ const CoatTemplate = (props) => {
         </Container>
       )}
 
-      {coat && <CoatSingle {...coat} />}
+      {coat && <CoatSingle {...coat} nav={pageContext} />}
     </Layout>
   );
 };

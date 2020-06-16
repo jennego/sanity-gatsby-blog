@@ -46,8 +46,13 @@ async function createBlogPostPages(graphql, actions) {
           next:
             index === postEdges.length - 1
               ? null
-              : postEdges[index + 1].node.slug.current,
-          prev: index === 0 ? null : postEdges[index - 1].node.slug.current,
+              : format(postEdges[index + 1].node.publishedAt, "YYYY/MM/") +
+                postEdges[index + 1].node.slug.current,
+          prev:
+            index === 0
+              ? null
+              : format(postEdges[index - 1].node.publishedAt, "YYYY/MM/") +
+                postEdges[index - 1].node.slug.current,
         },
       });
     });
@@ -90,7 +95,7 @@ async function createCoatPages(graphql, actions) {
         context: {
           id,
           next:
-            index === postEdges.length - 1
+            index === coatEdges.length - 1
               ? null
               : coatEdges[index + 1].node.slug.current,
           prev: index === 0 ? null : coatEdges[index - 1].node.slug.current,

@@ -50,9 +50,7 @@ const BlogPostTemplate = (props) => {
         </Container>
       )}
 
-      {console.log(pageContext)}
-
-      {post && <BlogPost {...post} />}
+      {post && <BlogPost {...post} nav={pageContext} />}
     </div>
   );
 };

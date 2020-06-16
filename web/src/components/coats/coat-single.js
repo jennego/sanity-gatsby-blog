@@ -6,6 +6,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Link } from "gatsby";
 
 function CoatSingle(props) {
   const {
@@ -22,7 +23,11 @@ function CoatSingle(props) {
     <Container fluid>
       <Row>
         <Col xs={1} sm={1}>
-          LEFT
+          {props.nav.prev === null ? (
+            ""
+          ) : (
+            <Link to={`/coat/${props.nav.prev}`}> Previous</Link>
+          )}
         </Col>
         <Col xs={10} md={6}>
           {mainImage !== null ? (
@@ -38,7 +43,11 @@ function CoatSingle(props) {
           <p> {limited === true ? "Limited" : "Unlimited"} </p>
         </Col>
         <Col xs={1} xs={{ order: 3 }} md={{ order: 4 }}>
-          RIGHT
+          {props.nav.next === null ? (
+            ""
+          ) : (
+            <Link to={`/coat/${props.nav.next}`}> Next</Link>
+          )}
         </Col>
       </Row>
     </Container>
