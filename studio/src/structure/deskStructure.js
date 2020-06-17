@@ -66,7 +66,7 @@ export default () =>
           S.editor()
             .id('aboutPage')
             .schemaType('about')
-            .documentId('about')
+            .documentId('aboutPage')
         ),
       S.divider(),
       S.listItem()
@@ -89,6 +89,8 @@ export default () =>
       // defined the structure above.
       ...S.documentTypeListItems().filter(
         listItem =>
-          !['category', 'author', 'post', 'siteSettings', 'coatIntro'].includes(listItem.getId())
+          !['category', 'author', 'post', 'siteSettings', 'coatIntro', 'about'].includes(
+            listItem.getId()
+          )
       )
     ])

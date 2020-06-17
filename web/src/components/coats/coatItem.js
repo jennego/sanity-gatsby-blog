@@ -11,8 +11,8 @@ const CoatItem = (props) => {
           {console.log(props)}
           <Card.Img src={props.coat.mainImage.asset.url} alt="Card image" />
           <Card.ImgOverlay>
-            <a className="coat-link text-white" href={`${props.coat.link}`}>
-              Link
+            <a className="coat-link" href={`${props.coat.link}`}>
+              <i class="fas fa-link fa-2x"></i>
             </a>
           </Card.ImgOverlay>
         </Card>

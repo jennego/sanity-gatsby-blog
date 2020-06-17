@@ -1,10 +1,14 @@
 @import "./custom-properties.css";
 
-.coat-link a,
-.coat-link a:visited {
+a.coat-link,
+a:visited.coat-link {
   position: relative;
   z-index: 3;
-  color: white;
+  color: rgb(255, 255, 255) !important;
+}
+
+a:hover.coat-link {
+  color: rgba(255, 255, 255, 0.5) !important;
 }
 
 .ReactModal__Overlay--after-open {

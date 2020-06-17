@@ -3,6 +3,7 @@ This is actually not a blog but I'm too scared to change the repo name right now
 To do
 
 - Style single pages
+- arrow key nav
 - Design grid page
 - Page animation
 - Style Nav
@@ -12,6 +13,7 @@ To do
 
 Stretch
 
+- multiple category filtering and sorting
 - search with autocomplete
 
 # Blog with Gatsby
