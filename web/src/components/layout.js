@@ -22,6 +22,11 @@ const Layout = ({ children, onHideNav, onShowNav, showNav, siteTitle }) => (
           <a href="https://www.sanity.io">Sanity</a> &amp;
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
+          <p>
+            <a href="https://sanity-gatsby-blog-studio-dbt4phk4.netlify.app/">
+              admin
+            </a>
+          </p>
         </div>
       </div>
     </footer>
