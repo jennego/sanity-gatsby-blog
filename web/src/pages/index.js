@@ -8,6 +8,7 @@ import Layout from "../containers/layout";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CoatItem from "../components/coats/coatItem";
+import AboutCoat from "../components/coats/aboutCoat";
 
 export const query = graphql`
   fragment SanityImage on SanityMainImage {
@@ -95,6 +96,10 @@ const IndexPage = (props) => {
       <Container>
         <h1 hidden>Welcome to {site.title}</h1>
         {console.log(data)}
+
+        <Row>
+          <AboutCoat />
+        </Row>
 
         <Row>
           {data.coat.edges.map(({ node }) => (
