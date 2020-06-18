@@ -5,29 +5,27 @@ import { cn } from "../lib/helpers";
 
 import styles from "./header.module.css";
 
-const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => (
-  <div className={styles.root}>
-    <div className={styles.wrapper}>
-      <div className={styles.branding}>
-        <Link to="/">{siteTitle}</Link>
-      </div>
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 
-      <button
-        className={styles.toggleNavButton}
-        onClick={showNav ? onHideNav : onShowNav}
-      >
-        <Icon symbol="hamburger" />
-      </button>
-
-      <nav className={cn(styles.nav, showNav && styles.showNav)}>
-        <ul>
-          <li>
-            <Link to="/blog/">Blog</Link>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
+const Header = ({ siteTitle }) => (
+  <Navbar bg="#fff" expand="lg">
+    <Navbar.Brand href="#home">{siteTitle}</Navbar.Brand>
+    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="ml-auto">
+        <Link to="/" className="nav-link">
+          Purple Howrses
+        </Link>
+        <Link to="/about" className="nav-link">
+          About
+        </Link>
+        <Link to="/blog" className="nav-link">
+          Blog
+        </Link>
+      </Nav>
+    </Navbar.Collapse>
+  </Navbar>
 );
 
 export default Header;

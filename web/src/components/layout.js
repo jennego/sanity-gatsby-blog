@@ -13,12 +13,7 @@ const Layout = ({ children, onHideNav, onShowNav, showNav, siteTitle }) => (
         crossorigin="anonymous"
       ></script>
     </Helmet>
-    <Header
-      siteTitle={siteTitle}
-      onHideNav={onHideNav}
-      onShowNav={onShowNav}
-      showNav={showNav}
-    />
+    <Header siteTitle={siteTitle} />
     <div className={styles.content}>{children}</div>
     <footer className={styles.footer}>
       <div className={styles.footerWrapper}>

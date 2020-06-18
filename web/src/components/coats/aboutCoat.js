@@ -6,6 +6,7 @@ const AboutCoat = () => {
   const data = useStaticQuery(graphql`
     {
       sanityCoatIntro {
+        title
         _rawBody
       }
     }
@@ -21,7 +22,6 @@ const AboutCoat = () => {
   };
   return (
     <div>
-      {console.log(data.sanityCoatIntro._rawBody)}
       <BlockContent
         blocks={data.sanityCoatIntro._rawBody}
         serializers={serializers}
