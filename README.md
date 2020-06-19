@@ -7,9 +7,9 @@ To do
 - Design grid page
 - Page animation
 - Style Nav
-- Make pet page
 - Make category pages
 - Filter by category
+- Make pet page
 
 Stretch
 

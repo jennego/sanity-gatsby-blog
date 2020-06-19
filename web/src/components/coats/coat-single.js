@@ -19,6 +19,7 @@ function CoatSingle(props) {
     bgName,
     limited,
   } = props;
+
   return (
     <Container fluid>
       <div className="row d-flex justify-content-center">
