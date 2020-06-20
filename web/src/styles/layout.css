@@ -7,8 +7,29 @@ a:visited.coat-link {
   color: rgb(255, 255, 255) !important;
 }
 
+.card-img-overlay {
+  display: flex;
+  align-content: space-around;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 a:hover.coat-link {
   color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.coat-item:hover .card-img-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.coat-item:hover .hover-detail {
+  visibility: visible;
+}
+
+.hover-detail {
+  display: flex;
+  justify-content: center;
+  visibility: hidden;
 }
 
 html {

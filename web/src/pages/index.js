@@ -48,6 +48,7 @@ export const query = graphql`
           id
           title
           link
+          limited
           mainImage {
             asset {
               url

@@ -15,7 +15,7 @@ const Category = () => {
     }
   `);
   return data.allSanityCategory.edges.map((cat) => (
-    <div>
+    <div key={cat.node.id}>
       <p> {cat.node.title} </p>
     </div>
   ));
