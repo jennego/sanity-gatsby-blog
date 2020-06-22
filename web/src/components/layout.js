@@ -12,6 +12,10 @@ const Layout = ({ children, onHideNav, onShowNav, showNav, siteTitle }) => (
         src="https://kit.fontawesome.com/1ee357d2bb.js"
         crossorigin="anonymous"
       ></script>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+      />
     </Helmet>
     <Header siteTitle={siteTitle} />
     <div className={styles.content}>{children}</div>

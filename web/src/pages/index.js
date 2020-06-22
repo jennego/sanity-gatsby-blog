@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { graphql } from "gatsby";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CoatItem from "../components/coats/coatItem";
 import AboutCoat from "../components/coats/aboutCoat";
+import { HeartBeat, Zoom } from "react-awesome-reveal";
 
 export const query = graphql`
   fragment SanityImage on SanityMainImage {
@@ -98,20 +99,14 @@ const IndexPage = (props) => {
         {console.log(data)}
 
         <Row>
-          <AboutCoat />
+          <HeartBeat>
+            <AboutCoat />
+          </HeartBeat>
         </Row>
 
         <Row>
-          {data.coat.edges.map(({ node }) => (
-            <CoatItem coat={node} />
-            // <Col md={4}>
-            //   {≈ !== null ? (
-            //     <img className="img-fluid" src={node.mainImage.asset.url} />
-            //   ) : (
-            //     ""
-            //   )}
-            //   {console.log(node)}
-            // </Col>
+          {data.coat.edges.map(({ node }, x) => (
+            <CoatItem coat={node} delay={x * 200} />
           ))}
         </Row>
         {/* {postNodes && (
