@@ -99,12 +99,10 @@ const IndexPage = (props) => {
         {console.log(data)}
 
         <Row>
-          <HeartBeat>
-            <AboutCoat />
-          </HeartBeat>
+          <AboutCoat />
         </Row>
 
-        <Row>
+        <Row noGutters={true}>
           {data.coat.edges.map(({ node }, x) => (
             <CoatItem coat={node} delay={x * 200} />
           ))}

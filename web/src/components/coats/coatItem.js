@@ -1,8 +1,9 @@
 import React from "react";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
+import Badge from "react-bootstrap/Badge";
 import { Link } from "gatsby";
-import { HeartBeat, Zoom } from "react-awesome-reveal";
+import { Zoom } from "react-awesome-reveal";
 
 const CoatItem = (props) => {
   return (
@@ -16,8 +17,16 @@ const CoatItem = (props) => {
               <a className="coat-link" href={`${props.coat.link}`}>
                 <i class="fas fa-link fa-2x"></i>
               </a>
-              <div className="hover-detail">{props.coat.title}</div>
-              {props.delay}
+              <div className="hover-detail">
+                <span>{props.coat.title}</span>
+                {props.coat.limited === true ? (
+                  <Badge pill variant="primary">
+                    Limited
+                  </Badge>
+                ) : (
+                  ""
+                )}
+              </div>
             </Card.ImgOverlay>
           </Card>
         </Zoom>

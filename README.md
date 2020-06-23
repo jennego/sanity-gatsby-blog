@@ -10,6 +10,7 @@ To do
 - Make category pages
 - Filter by category
 - Make pet page
+- loading screen or preload images
 
 Stretch
 

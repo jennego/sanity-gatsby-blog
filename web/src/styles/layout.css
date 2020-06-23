@@ -20,7 +20,9 @@ a:visited.coat-link {
   z-index: 3;
   color: rgb(255, 255, 255) !important;
 }
-
+.card {
+  border-radius: 0px;
+}
 .card-img-overlay {
   display: flex;
   align-content: space-around;
@@ -40,9 +42,13 @@ a:hover.coat-link {
   visibility: visible;
 }
 
+.badge {
+  line-height: 1.5 !important;
+}
+
 .hover-detail {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   visibility: hidden;
 }
 

@@ -10,7 +10,7 @@ import Nav from "react-bootstrap/Nav";
 
 const Header = ({ siteTitle }) => (
   <Navbar className="transparent" expand="lg">
-    <Navbar.Brand href="#home">{siteTitle}</Navbar.Brand>
+    <Navbar.Brand href="/">{siteTitle}</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="ml-auto">
