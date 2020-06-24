@@ -126,7 +126,8 @@ async function createCatPages(graphql, actions) {
 
   catEdges.forEach((edge, index) => {
     const { id, title } = edge.node;
-    const path = `/category/${title.toLowerCase()}/`;
+    const slug = title.replace(/ /g, "-").toLowerCase();
+    const path = `/category/${slug}/`;
 
     createPage({
       path,
