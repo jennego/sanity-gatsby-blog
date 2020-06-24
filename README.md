@@ -2,13 +2,13 @@ This is actually not a blog but I'm too scared to change the repo name right now
 
 To do
 
+- Filter by category - use graphql on archive and redux for multiple sorts on coat page
 - Style single pages
 - arrow key nav
 - Design grid page
 - Page animation
 - Style Nav
 - Make category pages
-- Filter by category
 - Make pet page
 - loading screen or preload images
 

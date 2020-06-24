@@ -104,7 +104,43 @@ async function createCoatPages(graphql, actions) {
     });
 }
 
+async function createCatPages(graphql, actions) {
+  const { createPage } = actions;
+
+  const result = await graphql(`
+    {
+      allSanityCategory(sort: { order: ASC, fields: title }) {
+        edges {
+          node {
+            title
+            id
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) throw result.errors;
+
+  const catEdges = (result.data.allSanityCategory || {}).edges || [];
+
+  catEdges.forEach((edge, index) => {
+    const { id, title } = edge.node;
+    const path = `/category/${title.toLowerCase()}/`;
+
+    createPage({
+      path,
+      component: require.resolve("./src/templates/category-archive.js"),
+      context: {
+        id,
+        title,
+      },
+    });
+  });
+}
+
 exports.createPages = async ({ graphql, actions }) => {
   await createBlogPostPages(graphql, actions);
   await createCoatPages(graphql, actions);
+  await createCatPages(graphql, actions);
 };
