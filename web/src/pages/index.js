@@ -70,6 +70,7 @@ export const query = graphql`
 
 const IndexPage = (props) => {
   const { data, errors } = props;
+  const { query, setQuery } = useState();
 
   if (errors) {
     return (
@@ -103,6 +104,12 @@ const IndexPage = (props) => {
         </Row>
 
         <Row noGutters={true}>
+          {console.log(
+            data.coat.edges.filter(({ node }) =>
+              node.categories.map((category) => category.title === "Blue")
+            )
+          )}
+
           {data.coat.edges.map(({ node }, x) => (
             <CoatItem coat={node} delay={x * 200} />
           ))}
