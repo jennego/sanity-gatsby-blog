@@ -7,7 +7,7 @@ import { Zoom } from "react-awesome-reveal";
 
 const CoatItem = (props) => {
   return (
-    <Col md={4} key={props.coat.id} className="d-inline-flex">
+    <Col lg={4} md={6} key={props.coat.id} className="d-inline-flex">
       <Link to={`/coat/${props.coat.slug.current}`}>
         <Zoom delay={props.delay}>
           <Card className="bg-dark text-white coat-item">
