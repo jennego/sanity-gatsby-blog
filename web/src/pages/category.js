@@ -1,7 +1,7 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import Layout from "../components/layout";
-import Container from "react-bootstrap/container";
+import Container from "react-bootstrap/Container";
 import { Link } from "gatsby";
 
 const Category = () => {
