@@ -1,18 +1,29 @@
 import React from "react";
 import { graphql } from "gatsby";
+import Layout from "../components/layout";
+import Container from "react-bootstrap/Container";
+import Badge from "react-bootstrap/Badge";
+
+import CoatItemArch from "../components/coats/archive-item";
 
 const categoryArchive = (props) => {
   const { data, errors, pageContext } = props;
   return (
-    <div>
-      {console.log(data.allSanityCoat.nodes)}
-      <h1> Category Archive Page for {pageContext.title} </h1>
-      {data.allSanityCoat.nodes.length === 0 ? (
-        <p> Nothing with tagged with {pageContext.title} </p>
-      ) : (
-        data.allSanityCoat.nodes.map((item) => <p> {item.title} </p>)
-      )}
-    </div>
+    <Layout>
+      <Container>
+        <h1>
+          Here are the things that are tagged
+          <Badge variant="dark">{pageContext.title}</Badge>
+        </h1>
+        {data.allSanityCoat.nodes.length === 0 ? (
+          <p> Nothing with tagged with {pageContext.title} </p>
+        ) : (
+          data.allSanityCoat.nodes.map((item) => (
+            <CoatItemArch coat={item} {...props} />
+          ))
+        )}
+      </Container>
+    </Layout>
   );
 };
 
@@ -32,6 +43,9 @@ export const query = graphql`
         link
         preCreation
         useNum
+        slug {
+          current
+        }
         categories {
           title
           id

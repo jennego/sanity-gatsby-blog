@@ -24,6 +24,10 @@ a:hover.coat-link {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.archive-coat:hover .row {
+  background-color: rgba(66, 105, 245, 0.5);
+}
+
 .coat-item:hover .hover-detail {
   visibility: visible;
 }
