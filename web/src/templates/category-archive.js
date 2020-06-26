@@ -5,9 +5,13 @@ const categoryArchive = (props) => {
   const { data, errors, pageContext } = props;
   return (
     <div>
+      {console.log(data.allSanityCoat.nodes)}
       <h1> Category Archive Page for {pageContext.title} </h1>
-      <pre>{JSON.stringify(data, null, 4)}</pre>
-      {console.log(pageContext)}
+      {data.allSanityCoat.nodes.length === 0 ? (
+        <p> Nothing with tagged with {pageContext.title} </p>
+      ) : (
+        data.allSanityCoat.nodes.map((item) => <p> {item.title} </p>)
+      )}
     </div>
   );
 };
