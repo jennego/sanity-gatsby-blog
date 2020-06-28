@@ -1,5 +1,9 @@
 @import "./custom-properties.css";
 
+.item-block {
+  margin: 1rem 0;
+}
+
 a.coat-link,
 a:visited.coat-link {
   position: relative;

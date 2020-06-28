@@ -6,6 +6,9 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Badge from "react-bootstrap/Badge";
+import BlockContent from "@sanity/block-content-to-react";
+
 import { Link } from "gatsby";
 
 function CoatSingle(props) {
@@ -19,6 +22,16 @@ function CoatSingle(props) {
     bgName,
     limited,
   } = props;
+
+  const serializers = {
+    types: {
+      code: (props) => (
+        <pre data-language={props.node.language}>
+          <code>{props.node.code}</code>
+        </pre>
+      ),
+    },
+  };
 
   return (
     <Container fluid>
@@ -47,8 +60,39 @@ function CoatSingle(props) {
           )}
         </Col>
         <Col xs={12} sm={12} md={4} xs={{ order: 4 }}>
-          <h1> {title} </h1>
-          <p> {limited === true ? "Limited" : "Unlimited"} </p>
+          <div className="item-block">
+            <h1> {title} </h1>
+            <Badge variant="primary">
+              {" "}
+              {limited === true ? "Limited" : "Unlimited"}{" "}
+            </Badge>
+            {console.log(props)}
+            {useNum !== null ? <Badge> {useNum} </Badge> : ""}
+            {bgName !== null ? (
+              <p>
+                <strong>Background Name</strong>:{bgName}
+              </p>
+            ) : (
+              ""
+            )}
+          </div>
+          <div className="item-block">
+            <h5>Categories</h5>
+            {categories.map((cat) => (
+              <Link
+                to={`/category/${cat.title.replace(/ /g, "-").toLowerCase()}`}
+              >
+                <Badge pill variant="dark" key={cat.id}>
+                  {cat.title}
+                </Badge>
+              </Link>
+            ))}
+          </div>
+          <BlockContent
+            blocks={_rawBody}
+            serializers={serializers}
+            className="item-block body-text"
+          ></BlockContent>
         </Col>
         <div
           className="col-xs-1 d-flex align-items-center order-xs-3 order-md-4"
