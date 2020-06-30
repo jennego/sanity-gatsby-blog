@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { graphql } from "gatsby";
-import Container from "../components/container";
+import Container from "react-bootstrap/Container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import SEO from "../components/seo";
 import Layout from "../containers/layout";
@@ -8,7 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CoatItem from "../components/coats/coatItem";
 import AboutCoat from "../components/coats/aboutCoat";
-import { HeartBeat, Zoom } from "react-awesome-reveal";
+import FilterButtons from "../components/coats/filterButtons";
 
 export const query = graphql`
   fragment SanityImage on SanityMainImage {
@@ -95,32 +95,41 @@ const IndexPage = (props) => {
         description={site.description}
         keywords={site.keywords}
       />
-      <Container>
+      <Container fluid>
         <h1 hidden>Welcome to {site.title}</h1>
         {console.log(data)}
 
         <Row>
-          <AboutCoat />
+          <Container>
+            <AboutCoat />
+          </Container>
         </Row>
 
-        <Row noGutters={true}>
-          {console.log(
-            data.coat.edges.filter(({ node }) =>
-              node.categories.map((category) => category.title === "Blue")
-            )
-          )}
+        <Row>
+          <Col>
+            <Row noGutters={true}>
+              {console.log(
+                data.coat.edges.filter(({ node }) =>
+                  node.categories.map((category) => category.title === "Blue")
+                )
+              )}
 
-          {data.coat.edges.map(({ node }, x) => (
-            <CoatItem coat={node} delay={x * 200} />
-          ))}
-        </Row>
-        {/* {postNodes && (
+              {data.coat.edges.map(({ node }, x) => (
+                <CoatItem coat={node} delay={x * 200} />
+              ))}
+            </Row>
+            {/* {postNodes && (
               <BlogPostPreviewList
               title="Latest blog posts"
               nodes={postNodes}
               browseMoreHref="/archive/"
               />
             )} */}
+          </Col>
+          <Col md={3}>
+            <FilterButtons />
+          </Col>
+        </Row>
       </Container>
     </Layout>
   );
