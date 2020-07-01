@@ -3,7 +3,6 @@ const initialState = {
 };
 
 const TOGGLE_ISLIMITED = "TOGGLE_ISLIMITED";
-const TOGGLE_IS_NOT_LIMITED = "TOGGLE_IS_NOT_LIMITED";
 
 export const toggleIsLimited = (isLimited) => ({
   type: TOGGLE_ISLIMITED,

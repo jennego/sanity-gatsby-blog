@@ -6,15 +6,14 @@ import Form from "react-bootstrap/Form";
 import { toggleIsLimited } from "../../state/filterButtons";
 import { toggleIsNotLimited } from "../../state/filterButtons";
 import { connect } from "react-redux";
-import { store } from "redux";
 
 const FilterButtons = ({ isLimited, dispatch }) => {
   const limitToggleHandler = (e) => {
-    console.log({ isLimited });
-    if (event.target.checked == true) {
-      dispatch(toggleIsLimited(false));
-    } else {
+    console.log(e.target.checked);
+    if (e.target.checked == true) {
       dispatch(toggleIsLimited(true));
+    } else {
+      dispatch(toggleIsLimited(false));
     }
   };
   const spaceToggleHandler = (e) => {
@@ -64,13 +63,9 @@ const FilterButtons = ({ isLimited, dispatch }) => {
 //   },
 // });
 
-const mapDispatchToProps = {
-  limitToggleHandler,
-};
-
 export default connect(
   (state) => ({
     isLimited: state.app.isLimited,
   }),
-  mapDispatchToProps
+  null
 )(FilterButtons);
