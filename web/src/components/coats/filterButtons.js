@@ -1,12 +1,21 @@
 import React, { useState } from "react";
-import FormControl from "react-bootstrap/FormControl";
-import FormGroup from "react-bootstrap/FormGroup";
-import FormLabel from "react-bootstrap/FormLabel";
+// import FormControl from "react-bootstrap/FormControl";
+// import FormGroup from "react-bootstrap/FormGroup";
+// import FormLabel from "react-bootstrap/FormLabel";
 import Form from "react-bootstrap/Form";
+import { toggleIsLimited } from "../../state/filterButtons";
+import { toggleIsNotLimited } from "../../state/filterButtons";
+import { connect } from "react-redux";
+import { store } from "redux";
 
-const FilterButtons = (props) => {
+const FilterButtons = ({ isLimited, dispatch }) => {
   const limitToggleHandler = (e) => {
-    return e.target.checked;
+    console.log({ isLimited });
+    if (event.target.checked == true) {
+      dispatch(toggleIsLimited(false));
+    } else {
+      dispatch(toggleIsLimited(true));
+    }
   };
   const spaceToggleHandler = (e) => {
     return e.target.checked;
@@ -25,7 +34,7 @@ const FilterButtons = (props) => {
         label="Limited"
         data-toggle="button"
         defaultChecked={false}
-        onChange={limitToggleHandler}
+        onClick={limitToggleHandler}
       />
       <Form.Check
         type="switch"
@@ -47,4 +56,21 @@ const FilterButtons = (props) => {
   );
 };
 
-export default FilterButtons;
+// const mapStateToProps = (state) => ({ isLimited: state.isLimited });
+
+// const mapDispatchToProps = (dispatch) => ({
+//   limitToggleHandler() {
+//     dispatch(toggleIsLimited(!isLimited));
+//   },
+// });
+
+const mapDispatchToProps = {
+  limitToggleHandler,
+};
+
+export default connect(
+  (state) => ({
+    isLimited: state.app.isLimited,
+  }),
+  mapDispatchToProps
+)(FilterButtons);
