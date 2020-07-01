@@ -108,11 +108,7 @@ const IndexPage = (props) => {
         <Row>
           <Col>
             <Row noGutters={true}>
-              {console.log(
-                data.coat.edges.filter(({ node }) =>
-                  node.categories.map((category) => category.title === "Blue")
-                )
-              )}
+              {console.log(data.coat.edges.filter().map(({ node }, x) => node))}
 
               {data.coat.edges.map(({ node }, x) => (
                 <CoatItem coat={node} delay={x * 200} />

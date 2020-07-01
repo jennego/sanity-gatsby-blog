@@ -4,13 +4,11 @@ import React, { useState } from "react";
 // import FormLabel from "react-bootstrap/FormLabel";
 import Form from "react-bootstrap/Form";
 import { toggleIsLimited } from "../../state/filterButtons";
-import { toggleIsNotLimited } from "../../state/filterButtons";
 import { connect } from "react-redux";
 
 const FilterButtons = ({ isLimited, dispatch }) => {
   const limitToggleHandler = (e) => {
-    console.log(e.target.checked);
-    if (e.target.checked == true) {
+    if (isLimited === false) {
       dispatch(toggleIsLimited(true));
     } else {
       dispatch(toggleIsLimited(false));
@@ -35,6 +33,7 @@ const FilterButtons = ({ isLimited, dispatch }) => {
         defaultChecked={false}
         onClick={limitToggleHandler}
       />
+      {isLimited}
       <Form.Check
         type="switch"
         id="pre-creation-space"
@@ -55,17 +54,12 @@ const FilterButtons = ({ isLimited, dispatch }) => {
   );
 };
 
-// const mapStateToProps = (state) => ({ isLimited: state.isLimited });
+const mapStateToProps = (state) => ({
+  isLimited: state.filterButtons.isLimited,
+});
 
 // const mapDispatchToProps = (dispatch) => ({
-//   limitToggleHandler() {
-//     dispatch(toggleIsLimited(!isLimited));
-//   },
+//   limitToggleHandler
 // });
 
-export default connect(
-  (state) => ({
-    isLimited: state.app.isLimited,
-  }),
-  null
-)(FilterButtons);
+export default connect(mapStateToProps)(FilterButtons);

@@ -8,6 +8,7 @@ const IndexPage = ({ isDarkMode, dispatch }) => (
     <h1>Hi Redux</h1>
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>
+    {console.log({ isDarkMode })}
     <button
       style={isDarkMode ? { background: "black", color: "white" } : null}
       onClick={() => dispatch(toggleDarkMode(!isDarkMode))}
