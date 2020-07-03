@@ -10,6 +10,13 @@ export const coatDataLoad = (data) => ({
   data,
 });
 
+const FILTER_LIMITED = "FILTER_LIMITED";
+
+export const filterLimited = (data) => ({
+  type: FILTER_LIMITED,
+  data,
+});
+
 const TOGGLE_ISLIMITED = "TOGGLE_ISLIMITED";
 
 export const toggleIsLimited = (isLimited) => ({
@@ -24,6 +31,11 @@ export default (state = initialState, action) => {
         ...state,
         isLimited: action.isLimited,
       };
+    case FILTER_LIMITED:
+      return {
+        ...state,
+        coatData: action.data,
+      };
     case COAT_DATA_LOAD:
       return {
         ...state,
@@ -33,25 +45,3 @@ export default (state = initialState, action) => {
       return state;
   }
 };
-
-// const initialState = {
-//   isLimited: false,
-// };
-
-// const TOGGLE_LIMITED = "TOGGLE_LIMITED";
-
-// export const toggleIsLimited = (isLimited) => ({
-//   type: TOGGLE_LIMITED,
-//   isLimited,
-// });
-
-// export default (state = initialState, action) => {
-//   switch (action.type) {
-//     case TOGGLE_LIMITED:
-//       return { ...state, isLimited: true };
-//     case TOGGLE_LIMITED:
-//       return { ...state, isLimited: false };
-//     default:
-//       return state;
-//   }
-// };

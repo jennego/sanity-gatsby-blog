@@ -4,14 +4,20 @@ import React, { useState } from "react";
 // import FormLabel from "react-bootstrap/FormLabel";
 import Form from "react-bootstrap/Form";
 import { toggleIsLimited } from "../../state/filterButtons";
+import { filterLimited } from "../../state/filterButtons";
+
 import { connect } from "react-redux";
 
-const FilterButtons = ({ isLimited, dispatch }) => {
+const FilterButtons = ({ isLimited, coatData, dispatch }) => {
   const limitToggleHandler = (e) => {
     if (isLimited === false) {
       dispatch(toggleIsLimited(true));
+      const filtered = coatData.filter(({ node }) => node.limited == true);
+      dispatch(filterLimited(filtered));
     } else {
+      const filtered = coatData.filter(({ node }) => node.limited == false);
       dispatch(toggleIsLimited(false));
+      dispatch(filterLimited(filtered));
     }
   };
   const spaceToggleHandler = (e) => {
@@ -56,6 +62,7 @@ const FilterButtons = ({ isLimited, dispatch }) => {
 
 const mapStateToProps = (state) => ({
   isLimited: state.filterButtons.isLimited,
+  coatData: state.filterButtons.coatData,
 });
 
 // const mapDispatchToProps = (dispatch) => ({

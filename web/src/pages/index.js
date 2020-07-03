@@ -77,8 +77,9 @@ const IndexPage = ({ data, errors, dispatch, coatData }) => {
   const coatResults = data.coat.edges;
 
   useEffect(() => {
-    if (coatData.length == 0) {
+    if (coatData.length === 0) {
       dispatch(coatDataLoad(coatResults));
+      console.log("useeffect", coatResults);
     }
   });
 
@@ -119,7 +120,7 @@ const IndexPage = ({ data, errors, dispatch, coatData }) => {
         <Row>
           <Col>
             <Row noGutters={true}>
-              {coatResults.map(({ node }, x) => (
+              {coatData.map(({ node }, x) => (
                 <CoatItem coat={node} delay={x * 200} />
               ))}
             </Row>
