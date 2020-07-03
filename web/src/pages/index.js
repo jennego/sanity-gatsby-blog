@@ -10,6 +10,9 @@ import CoatItem from "../components/coats/coatItem";
 import AboutCoat from "../components/coats/aboutCoat";
 import FilterButtons from "../components/coats/filterButtons";
 
+import { coatDataLoad } from "../state/filterButtons";
+import { connect } from "react-redux";
+
 export const query = graphql`
   fragment SanityImage on SanityMainImage {
     crop {
@@ -68,9 +71,16 @@ export const query = graphql`
   }
 `;
 
-const IndexPage = (props) => {
-  const { data, errors } = props;
+const IndexPage = ({ data, errors, dispatch, coatData }) => {
   const { query, setQuery } = useState();
+
+  const coatResults = data.coat.edges;
+
+  useEffect(() => {
+    if (coatData.length == 0) {
+      dispatch(coatDataLoad(coatResults));
+    }
+  });
 
   if (errors) {
     return (
@@ -95,6 +105,7 @@ const IndexPage = (props) => {
         description={site.description}
         keywords={site.keywords}
       />
+      {console.log("redux", coatData)}
       <Container fluid>
         <h1 hidden>Welcome to {site.title}</h1>
         {console.log(data)}
@@ -108,9 +119,7 @@ const IndexPage = (props) => {
         <Row>
           <Col>
             <Row noGutters={true}>
-              {console.log(data.coat.edges.filter().map(({ node }, x) => node))}
-
-              {data.coat.edges.map(({ node }, x) => (
+              {coatResults.map(({ node }, x) => (
                 <CoatItem coat={node} delay={x * 200} />
               ))}
             </Row>
@@ -131,4 +140,8 @@ const IndexPage = (props) => {
   );
 };
 
-export default IndexPage;
+const mapStateToProps = (state) => ({
+  coatData: state.filterButtons.coatData,
+});
+
+export default connect(mapStateToProps)(IndexPage);

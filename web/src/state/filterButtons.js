@@ -1,6 +1,14 @@
 const initialState = {
   isLimited: false,
+  coatData: [],
 };
+
+const COAT_DATA_LOAD = "COAT_DATA_LOAD";
+
+export const coatDataLoad = (data) => ({
+  type: COAT_DATA_LOAD,
+  data,
+});
 
 const TOGGLE_ISLIMITED = "TOGGLE_ISLIMITED";
 
@@ -15,6 +23,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLimited: action.isLimited,
+      };
+    case COAT_DATA_LOAD:
+      return {
+        ...state,
+        coatData: action.data,
       };
     default:
       return state;
