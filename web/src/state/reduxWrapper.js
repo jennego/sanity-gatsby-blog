@@ -5,9 +5,11 @@ import rootReducer from "./reducer";
 
 const createStore = () =>
   reduxCreateStore(
-    rootReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    rootReducer
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
+
+// remove window for prod
 
 export default ({ element }) => (
   <Provider store={createStore()}>{element}</Provider>
