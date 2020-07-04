@@ -14,10 +14,14 @@ const FilterButtons = ({ isLimited, coatData, dispatch }) => {
       dispatch(toggleIsLimited(true));
       const filtered = coatData.filter(({ node }) => node.limited == true);
       dispatch(filterLimited(filtered));
+      console.log(coatData);
     } else {
-      const filtered = coatData.filter(({ node }) => node.limited == false);
       dispatch(toggleIsLimited(false));
+      const filtered = [];
       dispatch(filterLimited(filtered));
+      /// maybe add another value in state for all items?
+      /// maybe sort into 2 arrays?
+      /// how to make sure others get filtered too? Refilter?
     }
   };
   const spaceToggleHandler = (e) => {

@@ -79,7 +79,7 @@ const IndexPage = ({ data, errors, dispatch, coatData }) => {
   useEffect(() => {
     if (coatData.length === 0) {
       dispatch(coatDataLoad(coatResults));
-      console.log("useeffect", coatResults);
+      console.log("use effect", coatResults);
     }
   });
 
