@@ -2,15 +2,6 @@ import React from "react";
 import { Provider } from "react-redux";
 import { createStore as reduxCreateStore } from "redux";
 import rootReducer from "./reducer";
+import store from "./store";
 
-const createStore = () =>
-  reduxCreateStore(
-    rootReducer
-    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
-
-// remove window for prod
-
-export default ({ element }) => (
-  <Provider store={createStore()}>{element}</Provider>
-);
+export default ({ element }) => <Provider store={store()}>{element}</Provider>;

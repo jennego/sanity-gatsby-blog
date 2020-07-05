@@ -6,6 +6,7 @@ import { toggleDarkMode } from "../state/app";
 const IndexPage = ({ isDarkMode, dispatch }) => (
   <div>
     <h1>Hi Redux</h1>
+    {console.log(process.env.NODE_ENV)}
   </div>
 );
 
