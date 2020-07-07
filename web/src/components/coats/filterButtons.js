@@ -7,6 +7,7 @@ import { toggleIsLimited } from "../../state/filterButtons";
 import { filterLimited } from "../../state/filterButtons";
 
 import { connect } from "react-redux";
+import Select from "react-select";
 
 const FilterButtons = ({ isLimited, coatData, dispatch }) => {
   const limitToggleHandler = (e) => {
@@ -29,7 +30,7 @@ const FilterButtons = ({ isLimited, coatData, dispatch }) => {
   };
 
   const catHandler = (e) => {
-    let value = Array.from(e.target.selectedOptions, (option) => option.value);
+    let value = e.map((val) => val.value);
     console.log(value);
   };
   return (
@@ -52,13 +53,18 @@ const FilterButtons = ({ isLimited, coatData, dispatch }) => {
       />
       <Form.Group controlId="exampleForm.ControlSelect2">
         <Form.Label>Example multiple select</Form.Label>
-        <Form.Control as="select" multiple onChange={catHandler}>
-          <option>blue</option>
-          <option>pink</option>
-          <option>red</option>
-          <option>green</option>
-          <option>unicorn</option>
-        </Form.Control>
+        <Select
+          isMulti
+          name="colors"
+          options={[
+            { value: "blue", label: "blue" },
+            { value: "red", label: "red" },
+            { value: "purple", label: "PUrpLe" },
+          ]}
+          className="basic-multi-select"
+          classNamePrefix="select"
+          onChange={catHandler}
+        />
       </Form.Group>
     </Form>
   );
