@@ -1,10 +1,8 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
-import Layout from "../components/layout";
-import Container from "react-bootstrap/Container";
-import { Link } from "gatsby";
+import Select from "react-select";
 
-const Category = () => {
+const CategoryList = (props) => {
   const data = useStaticQuery(graphql`
     {
       allSanityCategory(sort: { order: ASC, fields: title }) {
@@ -33,26 +31,24 @@ const Category = () => {
     ({ node }) => node.coats !== null
   );
 
+  let catValues = existingCat.map((obj) => ({
+    label: obj.node.title,
+    value: obj.node.title.toLowerCase(),
+  }));
+
   return (
-    <Layout>
-      <Container>
-        {console.log(data)}
-        <h2>Category Archive Pages</h2>
-        {existingCat.map((cat) => (
-          <div>
-            <Link
-              to={`/category/${cat.node.title
-                .replace(/ /g, "-")
-                .toLowerCase()}`}
-              key={cat.node.id}
-            >
-              {cat.node.title}
-            </Link>
-          </div>
-        ))}
-      </Container>
-    </Layout>
+    <div>
+      Categories
+      <Select
+        isMulti
+        name="colors"
+        options={catValues}
+        className="basic-multi-select"
+        classNamePrefix="select"
+        onChange={props.handleCategory}
+      ></Select>
+    </div>
   );
 };
 
-export default Category;
+export default CategoryList;

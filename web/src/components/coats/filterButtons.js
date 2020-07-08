@@ -3,13 +3,36 @@ import React, { useState } from "react";
 // import FormGroup from "react-bootstrap/FormGroup";
 // import FormLabel from "react-bootstrap/FormLabel";
 import Form from "react-bootstrap/Form";
-import { toggleIsLimited } from "../../state/filterButtons";
+import { toggleIsLimited, coatDataLoad } from "../../state/filterButtons";
 import { filterLimited } from "../../state/filterButtons";
+
+import { selectCategory, filterCategory } from "../../state/filterButtons";
 
 import { connect } from "react-redux";
 import Select from "react-select";
+import CategoryList from "./catList";
 
-const FilterButtons = ({ isLimited, coatData, dispatch }) => {
+// import { useStaticQuery, graphql } from "gatsby";
+
+// const ComponentName = () => {
+//   const data = useStaticQuery(graphql`
+//     {
+//       allSanityCategory(sort: { order: ASC, fields: title }) {
+//         edges {
+//           node {
+//             title
+//             id
+//           }
+//         }
+//       }
+//     }
+//   `);
+//   return <pre>{JSON.stringify(data, null, 4)}</pre>;
+// };
+
+// export default ComponentName;
+
+const FilterButtons = ({ isLimited, coatData, allCoats, dispatch }) => {
   const limitToggleHandler = (e) => {
     if (isLimited === false) {
       dispatch(toggleIsLimited(true));
@@ -18,8 +41,7 @@ const FilterButtons = ({ isLimited, coatData, dispatch }) => {
       console.log(coatData);
     } else {
       dispatch(toggleIsLimited(false));
-      const filtered = [];
-      dispatch(filterLimited(filtered));
+      dispatch(filterLimited(allCoats));
       /// maybe add another value in state for all items?
       /// maybe sort into 2 arrays?
       /// how to make sure others get filtered too? Refilter?
@@ -29,10 +51,51 @@ const FilterButtons = ({ isLimited, coatData, dispatch }) => {
     return e.target.checked;
   };
 
-  const catHandler = (e) => {
-    let value = e.map((val) => val.value);
-    console.log(value);
+  const categoryHandler = (e) => {
+    console.log(e);
+    if (e === null || e.length === 0) {
+      dispatch(coatDataLoad(allCoats));
+      console.log("show all categories", allCoats);
+    } else {
+      let selectedCategory = e.map((val) => val.value);
+      console.log(selectedCategory);
+      categoryFilter(selectedCategory);
+      dispatch(selectCategory(selectedCategory));
+    }
   };
+
+  const categoryFilter = (categories) => {
+    let hasCategory = [];
+    const notCategory = [];
+    console.log("cat filter", categories);
+
+    for (const { node } of allCoats) {
+      const simple = node.categories.map((cat) => cat.title.toLowerCase());
+      let includesAll = (array_to_check) =>
+        categories.reduce(
+          (accumulator, current) =>
+            accumulator && array_to_check.includes(current),
+          true
+        );
+      if (includesAll(simple)) {
+        hasCategory.push({ node });
+        if (isLimited) {
+          hasCategory = hasCategory.filter(({ node }) => node.limited == true);
+        }
+      } else {
+        notCategory.push(node);
+      }
+    }
+
+    if (hasCategory.length === 0) {
+      return "no matching items";
+    }
+
+    console.log("hasCategory arr", hasCategory);
+
+    dispatch(filterCategory(hasCategory));
+  };
+
   return (
     <Form>
       <h3>Filters</h3>
@@ -53,18 +116,7 @@ const FilterButtons = ({ isLimited, coatData, dispatch }) => {
       />
       <Form.Group controlId="exampleForm.ControlSelect2">
         <Form.Label>Example multiple select</Form.Label>
-        <Select
-          isMulti
-          name="colors"
-          options={[
-            { value: "blue", label: "blue" },
-            { value: "red", label: "red" },
-            { value: "purple", label: "PUrpLe" },
-          ]}
-          className="basic-multi-select"
-          classNamePrefix="select"
-          onChange={catHandler}
-        />
+        <CategoryList handleCategory={categoryHandler}></CategoryList>
       </Form.Group>
     </Form>
   );
@@ -73,6 +125,7 @@ const FilterButtons = ({ isLimited, coatData, dispatch }) => {
 const mapStateToProps = (state) => ({
   isLimited: state.filterButtons.isLimited,
   coatData: state.filterButtons.coatData,
+  allCoats: state.filterButtons.allCoats,
 });
 
 // const mapDispatchToProps = (dispatch) => ({

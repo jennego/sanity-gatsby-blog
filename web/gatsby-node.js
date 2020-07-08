@@ -145,3 +145,30 @@ exports.createPages = async ({ graphql, actions }) => {
   await createCoatPages(graphql, actions);
   await createCatPages(graphql, actions);
 };
+
+exports.createResolvers = ({ createResolvers }) => {
+  const resolvers = {
+    SanityCategory: {
+      coats: {
+        type: ["SanityCoat"],
+        resolve(source, args, context, info) {
+          return context.nodeModel.runQuery({
+            type: "SanityCoat",
+            query: {
+              filter: {
+                categories: {
+                  elemMatch: {
+                    _id: {
+                      eq: source._id,
+                    },
+                  },
+                },
+              },
+            },
+          });
+        },
+      },
+    },
+  };
+  createResolvers(resolvers);
+};

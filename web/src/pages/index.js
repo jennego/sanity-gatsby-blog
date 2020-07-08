@@ -10,7 +10,7 @@ import CoatItem from "../components/coats/coatItem";
 import AboutCoat from "../components/coats/aboutCoat";
 import FilterButtons from "../components/coats/filterButtons";
 
-import { coatDataLoad } from "../state/filterButtons";
+import { coatDataLoad, allCoatDataLoad } from "../state/filterButtons";
 import { connect } from "react-redux";
 
 export const query = graphql`
@@ -71,7 +71,7 @@ export const query = graphql`
   }
 `;
 
-const IndexPage = ({ data, errors, dispatch, coatData }) => {
+const IndexPage = ({ data, errors, dispatch, coatData, allCoats }) => {
   const { query, setQuery } = useState();
 
   const coatResults = data.coat.edges;
@@ -79,9 +79,12 @@ const IndexPage = ({ data, errors, dispatch, coatData }) => {
   useEffect(() => {
     if (coatData.length === 0) {
       dispatch(coatDataLoad(coatResults));
-      console.log("use effect", coatResults);
     }
   });
+
+  useEffect(() => {
+    dispatch(allCoatDataLoad(coatResults));
+  }, []);
 
   if (errors) {
     return (

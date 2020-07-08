@@ -1,12 +1,21 @@
 const initialState = {
   isLimited: false,
   coatData: [],
+  allCoats: [],
+  category: [],
 };
 
 const COAT_DATA_LOAD = "COAT_DATA_LOAD";
 
 export const coatDataLoad = (data) => ({
   type: COAT_DATA_LOAD,
+  data,
+});
+
+const ALL_COAT_DATA_LOAD = "ALL_COAT_DATA_LOAD";
+
+export const allCoatDataLoad = (data) => ({
+  type: ALL_COAT_DATA_LOAD,
   data,
 });
 
@@ -24,8 +33,32 @@ export const toggleIsLimited = (isLimited) => ({
   isLimited,
 });
 
+const SELECT_CATEGORY = "CATEGORY_SELECT";
+
+export const selectCategory = (category) => ({
+  type: SELECT_CATEGORY,
+  category,
+});
+
+const FILTER_CATEGORY = "FILTER_CATEGORY";
+
+export const filterCategory = (filtered) => ({
+  type: FILTER_CATEGORY,
+  filtered,
+});
+
 export default (state = initialState, action) => {
   switch (action.type) {
+    case FILTER_CATEGORY:
+      return {
+        ...state,
+        coatData: action.filtered,
+      };
+    case SELECT_CATEGORY:
+      return {
+        ...state,
+        category: action.category,
+      };
     case TOGGLE_ISLIMITED:
       return {
         ...state,
@@ -40,6 +73,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         coatData: action.data,
+      };
+    case ALL_COAT_DATA_LOAD:
+      return {
+        ...state,
+        allCoats: action.data,
       };
     default:
       return state;
