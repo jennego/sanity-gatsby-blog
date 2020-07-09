@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { graphql } from "gatsby";
 import Container from "react-bootstrap/Container";
 import GraphQLErrorList from "../components/graphql-error-list";
@@ -72,19 +72,17 @@ export const query = graphql`
 `;
 
 const IndexPage = ({ data, errors, dispatch, coatData, allCoats }) => {
-  const { query, setQuery } = useState();
-
   const coatResults = data.coat.edges;
 
   useEffect(() => {
     if (coatData.length === 0) {
       dispatch(coatDataLoad(coatResults));
     }
-  });
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(allCoatDataLoad(coatResults));
-  }, []);
+  }, [dispatch]);
 
   if (errors) {
     return (

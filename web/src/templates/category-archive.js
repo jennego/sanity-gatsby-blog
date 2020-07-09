@@ -7,7 +7,7 @@ import Badge from "react-bootstrap/Badge";
 import CoatItemArch from "../components/coats/archive-item";
 
 const categoryArchive = (props) => {
-  const { data, errors, pageContext } = props;
+  const { data, pageContext } = props;
   return (
     <Layout>
       <Container>

@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-// import FormControl from "react-bootstrap/FormControl";
-// import FormGroup from "react-bootstrap/FormGroup";
-// import FormLabel from "react-bootstrap/FormLabel";
+import React from "react";
 import Form from "react-bootstrap/Form";
 import { toggleIsLimited, coatDataLoad } from "../../state/filterButtons";
 import { filterLimited } from "../../state/filterButtons";
@@ -9,7 +6,6 @@ import { filterLimited } from "../../state/filterButtons";
 import { selectCategory, filterCategory } from "../../state/filterButtons";
 
 import { connect } from "react-redux";
-import Select from "react-select";
 import CategoryList from "./catList";
 
 // import { useStaticQuery, graphql } from "gatsby";
@@ -36,7 +32,7 @@ const FilterButtons = ({ isLimited, coatData, allCoats, dispatch }) => {
   const limitToggleHandler = (e) => {
     if (isLimited === false) {
       dispatch(toggleIsLimited(true));
-      const filtered = coatData.filter(({ node }) => node.limited == true);
+      const filtered = coatData.filter(({ node }) => node.limited === true);
       dispatch(filterLimited(filtered));
       console.log(coatData);
     } else {
@@ -80,7 +76,7 @@ const FilterButtons = ({ isLimited, coatData, allCoats, dispatch }) => {
       if (includesAll(simple)) {
         hasCategory.push({ node });
         if (isLimited) {
-          hasCategory = hasCategory.filter(({ node }) => node.limited == true);
+          hasCategory = hasCategory.filter(({ node }) => node.limited === true);
         }
       } else {
         notCategory.push(node);

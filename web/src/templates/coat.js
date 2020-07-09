@@ -6,8 +6,6 @@ import SEO from "../components/seo";
 import Layout from "../containers/layout";
 import CoatSingle from "../components/coats/coat-single";
 
-import { toPlainText } from "../lib/helpers";
-
 export const query = graphql`
   query CoatTemplateQuery($id: String!) {
     coat: sanityCoat(id: { eq: $id }) {

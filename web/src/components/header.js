@@ -1,10 +1,5 @@
 import { Link } from "gatsby";
 import React from "react";
-import Icon from "./icon";
-import { cn } from "../lib/helpers";
-
-import styles from "./header.module.css";
-
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
@@ -17,8 +12,8 @@ const Header = ({ siteTitle }) => (
         <Link to="/" className="nav-link">
           Purple Howrses
         </Link>
-        <Link to="category" className="nav-link">
-          Category Archive 
+        <Link to="/category" className="nav-link">
+          Category Archive
         </Link>
         <Link to="/about" className="nav-link">
           About
