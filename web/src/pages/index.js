@@ -9,6 +9,7 @@ import Col from "react-bootstrap/Col";
 import CoatItem from "../components/coats/coatItem";
 import AboutCoat from "../components/coats/aboutCoat";
 import FilterButtons from "../components/coats/filterButtons";
+import NoResults from "../components/noResults";
 
 import { coatDataLoad, allCoatDataLoad } from "../state/filterButtons";
 import { connect } from "react-redux";
@@ -71,7 +72,14 @@ export const query = graphql`
   }
 `;
 
-const IndexPage = ({ data, errors, dispatch, coatData, allCoats }) => {
+const IndexPage = ({
+  data,
+  errors,
+  dispatch,
+  coatData,
+  allCoats,
+  hasResults,
+}) => {
   const coatResults = data.coat.edges;
 
   useEffect(() => {
@@ -121,17 +129,14 @@ const IndexPage = ({ data, errors, dispatch, coatData, allCoats }) => {
         <Row>
           <Col>
             <Row noGutters={true}>
-              {coatData.map(({ node }, x) => (
-                <CoatItem coat={node} delay={x * 200} />
-              ))}
+              {hasResults ? (
+                coatData.map(({ node }, x) => (
+                  <CoatItem coat={node} delay={x * 200} />
+                ))
+              ) : (
+                <NoResults />
+              )}
             </Row>
-            {/* {postNodes && (
-              <BlogPostPreviewList
-              title="Latest blog posts"
-              nodes={postNodes}
-              browseMoreHref="/archive/"
-              />
-            )} */}
           </Col>
           <Col md={3}>
             <FilterButtons />
@@ -144,6 +149,7 @@ const IndexPage = ({ data, errors, dispatch, coatData, allCoats }) => {
 
 const mapStateToProps = (state) => ({
   coatData: state.filterButtons.coatData,
+  hasResults: state.filterButtons.hasResults,
 });
 
 export default connect(mapStateToProps)(IndexPage);

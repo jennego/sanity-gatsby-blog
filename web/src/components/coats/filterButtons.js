@@ -1,6 +1,10 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import { toggleIsLimited, coatDataLoad } from "../../state/filterButtons";
+import {
+  toggleIsLimited,
+  coatDataLoad,
+  noResults,
+} from "../../state/filterButtons";
 import { filterLimited } from "../../state/filterButtons";
 
 import { selectCategory, filterCategory } from "../../state/filterButtons";
@@ -28,13 +32,22 @@ import CategoryList from "./catList";
 
 // export default ComponentName;
 
-const FilterButtons = ({ isLimited, coatData, allCoats, dispatch }) => {
+const FilterButtons = ({
+  isLimited,
+  coatData,
+  allCoats,
+  dispatch,
+  errors,
+  hasResults,
+}) => {
   const limitToggleHandler = (e) => {
     if (isLimited === false) {
       dispatch(toggleIsLimited(true));
       const filtered = coatData.filter(({ node }) => node.limited === true);
       dispatch(filterLimited(filtered));
-      console.log(coatData);
+      if (filtered.length === 0) {
+        dispatch(noResults(false));
+      }
     } else {
       dispatch(toggleIsLimited(false));
       dispatch(filterLimited(allCoats));
@@ -43,6 +56,7 @@ const FilterButtons = ({ isLimited, coatData, allCoats, dispatch }) => {
       /// how to make sure others get filtered too? Refilter?
     }
   };
+
   const spaceToggleHandler = (e) => {
     return e.target.checked;
   };
@@ -82,19 +96,23 @@ const FilterButtons = ({ isLimited, coatData, allCoats, dispatch }) => {
         notCategory.push(node);
       }
     }
-
-    if (hasCategory.length === 0) {
-      return "no matching items";
-    }
-
     console.log("hasCategory arr", hasCategory);
 
-    dispatch(filterCategory(hasCategory));
+    if (hasCategory.length === 0) {
+      dispatch(noResults(false));
+    }
+
+    if (hasCategory.length > 0) {
+      dispatch(filterCategory(hasCategory));
+    }
   };
 
   return (
     <Form>
       <h3>Filters</h3>
+
+      {hasResults.toString()}
+      <p> Change to radio buttons? </p>
       <Form.Check
         type="switch"
         id="limited"
@@ -122,6 +140,7 @@ const mapStateToProps = (state) => ({
   isLimited: state.filterButtons.isLimited,
   coatData: state.filterButtons.coatData,
   allCoats: state.filterButtons.allCoats,
+  hasResults: state.filterButtons.hasResults,
 });
 
 // const mapDispatchToProps = (dispatch) => ({

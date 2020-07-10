@@ -14,7 +14,6 @@ const CoatItem = (props) => {
       <Link to={`/coat/${props.coat.slug.current}`}>
         <Zoom delay={props.delay}>
           <Card className="bg-dark text-white coat-item">
-            {console.log(props)}
             <Card.Img src={props.coat.mainImage.asset.url} alt="Card image" />
             <Card.ImgOverlay>
               <div className="hover-detail">
