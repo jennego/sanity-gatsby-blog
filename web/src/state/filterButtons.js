@@ -1,5 +1,5 @@
 const initialState = {
-  isLimited: false,
+  isLimited: "all",
   hasResults: true,
   coatData: [],
   allCoats: [],

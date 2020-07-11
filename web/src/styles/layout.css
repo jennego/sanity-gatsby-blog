@@ -8,7 +8,7 @@ a.coat-link,
 a:visited.coat-link {
   z-index: 3;
   color: rgb(255, 255, 255) !important;
-  position: fixed;
+  position: absolute;
   padding-top: 10px;
   padding-left: 10px;
 }

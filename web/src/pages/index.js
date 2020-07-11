@@ -44,7 +44,6 @@ export const query = graphql`
       keywords
     }
     coat: allSanityCoat(
-      limit: 6
       sort: { fields: [publishedAt], order: DESC }
       filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
     ) {
@@ -81,6 +80,7 @@ const IndexPage = ({
   hasResults,
 }) => {
   const coatResults = data.coat.edges;
+  console.log("coats from graphql not redux", coatResults);
 
   useEffect(() => {
     if (coatData.length === 0) {
@@ -115,7 +115,7 @@ const IndexPage = ({
         description={site.description}
         keywords={site.keywords}
       />
-      {console.log("redux", coatData)}
+
       <Container fluid>
         <h1 hidden>Welcome to {site.title}</h1>
         {console.log(data)}

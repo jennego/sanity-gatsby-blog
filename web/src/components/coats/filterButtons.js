@@ -41,20 +41,41 @@ const FilterButtons = ({
   hasResults,
 }) => {
   const limitToggleHandler = (e) => {
-    if (isLimited === false) {
-      dispatch(toggleIsLimited(true));
-      const filtered = coatData.filter(({ node }) => node.limited === true);
-      dispatch(filterLimited(filtered));
-      if (filtered.length === 0) {
-        dispatch(noResults(false));
-      }
-    } else {
-      dispatch(toggleIsLimited(false));
-      dispatch(filterLimited(allCoats));
-      /// maybe add another value in state for all items?
-      /// maybe sort into 2 arrays?
-      /// how to make sure others get filtered too? Refilter?
-    }
+    let input = e.target.value;
+
+    /// next check if category is present
+    /// combine true/false arrays?
+
+    //   switch (input) {
+    //     case "true":
+    //       return dispatch(toggleIsLimited(true));
+    //     case "false":
+    //       return dispatch(toggleIsLimited(false));
+    //     case "all":
+    //       return dispatch(toggleIsLimited("all"));
+    //   }
+
+    //   if (isLimited === true) {
+    //     console.log("is limited filtered true");
+
+    //     const filtered = coatData.filter(({ node }) => node.limited === true);
+    //     dispatch(filterLimited(filtered));
+    //     if (filtered.length === 0) {
+    //       dispatch(noResults(false));
+    //     }
+    //   } else if (isLimited === false) {
+    //     console.log("is filtered unlimited");
+    //     const filtered = coatData.filter(({ node }) => node.limited === false);
+    //     dispatch(filterLimited(filtered));
+    //     if (filtered.length === 0) {
+    //       dispatch(noResults(false));
+    //     }
+    //     /// maybe sort into 2 arrays?
+    //     /// how to make sure others get filtered too? Refilter?
+    //   } else if (isLimited === "all") {
+    //     console.log("is limited filtered all");
+    //     dispatch(filterLimited(allCoats));
+    //   }
   };
 
   const spaceToggleHandler = (e) => {
@@ -77,10 +98,11 @@ const FilterButtons = ({
   const categoryFilter = (categories) => {
     let hasCategory = [];
     const notCategory = [];
-    console.log("cat filter", categories);
+    console.log("cat filter", categories, allCoats);
 
     for (const { node } of allCoats) {
       const simple = node.categories.map((cat) => cat.title.toLowerCase());
+      console.log(simple);
       let includesAll = (array_to_check) =>
         categories.reduce(
           (accumulator, current) =>
@@ -88,10 +110,11 @@ const FilterButtons = ({
           true
         );
       if (includesAll(simple)) {
+        console.log("match");
         hasCategory.push({ node });
-        if (isLimited) {
-          hasCategory = hasCategory.filter(({ node }) => node.limited === true);
-        }
+        // if (isLimited) {
+        //   hasCategory = hasCategory.filter(({ node }) => node.limited === true);
+        // }
       } else {
         notCategory.push(node);
       }
@@ -113,15 +136,34 @@ const FilterButtons = ({
 
       {hasResults.toString()}
       <p> Change to radio buttons? </p>
-      <Form.Check
-        type="switch"
-        id="limited"
-        label="Limited"
-        data-toggle="button"
-        defaultChecked={false}
-        onClick={limitToggleHandler}
-      />
       {isLimited}
+      <Form.Group controlId="formGroupisLimited">
+        <Form.Check
+          type={"radio"}
+          id={`true`}
+          label={"Limited"}
+          onClick={limitToggleHandler}
+          value={true}
+          name="isLimited"
+        />
+        <Form.Check
+          type={"radio"}
+          id={`false`}
+          label={"Unlimited"}
+          onClick={limitToggleHandler}
+          value={false}
+          name="isLimited"
+        />
+        <Form.Check
+          type="radio"
+          id="all"
+          label="All Limits"
+          onClick={limitToggleHandler}
+          value="all"
+          name="isLimited"
+          defaultChecked={true}
+        />
+      </Form.Group>
       <Form.Check
         type="switch"
         id="pre-creation-space"
