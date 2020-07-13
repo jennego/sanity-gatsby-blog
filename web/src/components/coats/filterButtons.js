@@ -43,39 +43,33 @@ const FilterButtons = ({
   const limitToggleHandler = (e) => {
     let input = e.target.value;
 
-    /// next check if category is present
-    /// combine true/false arrays?
+    // / next check if category is present
+    // / combine true/false arrays?
 
-    //   switch (input) {
-    //     case "true":
-    //       return dispatch(toggleIsLimited(true));
-    //     case "false":
-    //       return dispatch(toggleIsLimited(false));
-    //     case "all":
-    //       return dispatch(toggleIsLimited("all"));
-    //   }
+    if (input === "true") {
+      dispatch(toggleIsLimited(true));
+      console.log("is limited filtered true");
 
-    //   if (isLimited === true) {
-    //     console.log("is limited filtered true");
-
-    //     const filtered = coatData.filter(({ node }) => node.limited === true);
-    //     dispatch(filterLimited(filtered));
-    //     if (filtered.length === 0) {
-    //       dispatch(noResults(false));
-    //     }
-    //   } else if (isLimited === false) {
-    //     console.log("is filtered unlimited");
-    //     const filtered = coatData.filter(({ node }) => node.limited === false);
-    //     dispatch(filterLimited(filtered));
-    //     if (filtered.length === 0) {
-    //       dispatch(noResults(false));
-    //     }
-    //     /// maybe sort into 2 arrays?
-    //     /// how to make sure others get filtered too? Refilter?
-    //   } else if (isLimited === "all") {
-    //     console.log("is limited filtered all");
-    //     dispatch(filterLimited(allCoats));
-    //   }
+      // const filtered = coatData.filter(({ node }) => node.limited === true);
+      // dispatch(filterLimited(filtered));
+      // if (filtered.length === 0) {
+      //   dispatch(noResults(false));
+      // }
+    } else if (input === "false") {
+      dispatch(toggleIsLimited(false));
+      console.log("is filtered unlimited");
+      // const filtered = coatData.filter(({ node }) => node.limited === false);
+      // dispatch(filterLimited(filtered));
+      // if (filtered.length === 0) {
+      //   dispatch(noResults(false));
+      // }
+      /// maybe sort into 2 arrays?
+      /// how to make sure others get filtered too? Refilter?
+    } else if (input === "all") {
+      dispatch(toggleIsLimited("all"));
+      console.log("is limited filtered all");
+      // dispatch(filterLimited(allCoats));
+    }
   };
 
   const spaceToggleHandler = (e) => {
@@ -131,12 +125,10 @@ const FilterButtons = ({
   };
 
   return (
-    <Form>
+    <Form className="sticky-top">
       <h3>Filters</h3>
-
-      {hasResults.toString()}
-      <p> Change to radio buttons? </p>
-      {isLimited}
+      Has Results: {hasResults.toString()} <br />
+      Is Limited: {isLimited.toString()}
       <Form.Group controlId="formGroupisLimited">
         <Form.Check
           type={"radio"}

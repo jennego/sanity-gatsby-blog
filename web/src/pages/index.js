@@ -131,14 +131,14 @@ const IndexPage = ({
             <Row noGutters={true}>
               {hasResults ? (
                 coatData.map(({ node }, x) => (
-                  <CoatItem coat={node} delay={x * 200} />
+                  <CoatItem coat={node} delay={x * 200} key={node.id} />
                 ))
               ) : (
                 <NoResults />
               )}
             </Row>
           </Col>
-          <Col md={3}>
+          <Col md={3} className="sticky-top">
             <FilterButtons />
           </Col>
         </Row>

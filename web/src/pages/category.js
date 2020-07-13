@@ -39,12 +39,11 @@ const Category = () => {
         {console.log(data)}
         <h2>Category Archive Pages</h2>
         {existingCat.map((cat) => (
-          <div>
+          <div key={cat.node.id}>
             <Link
               to={`/category/${cat.node.title
                 .replace(/ /g, "-")
                 .toLowerCase()}`}
-              key={cat.node.id}
             >
               {cat.node.title}
             </Link>

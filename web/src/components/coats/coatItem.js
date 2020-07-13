@@ -7,9 +7,9 @@ import { Zoom } from "react-awesome-reveal";
 
 const CoatItem = (props) => {
   return (
-    <Col lg={4} md={6} key={props.coat.id} className="d-inline-flex">
+    <Col lg={4} md={6} className="d-inline-flex">
       <a className="coat-link" href={`${props.coat.link}`}>
-        <i class="fas fa-link fa-2x"></i>
+        <i className="fas fa-link fa-2x"></i>
       </a>
       <Link to={`/coat/${props.coat.slug.current}`}>
         <Zoom delay={props.delay}>
